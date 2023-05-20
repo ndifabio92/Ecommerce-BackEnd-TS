@@ -1,11 +1,14 @@
 import express, { Application } from "express";
 import http from "http";
 import cors from 'cors';
-import { products } from "../routes/index.js";
-
+import { products, carts, users, session } from "../routes/index.js";
+import dbConnection from '../database/config.js';
 
 type paths = {
-    products: string
+    products: string,
+    users: string,
+    carts: string,
+    session: string
 }
 
 class Server {
@@ -14,7 +17,10 @@ class Server {
     private port: string;
     private server: null | http.Server;
     private apiPaths: paths = {
-        products: '/api/products'
+        products: '/api/products',
+        users: '/api/signup',
+        carts: '/api/carts',
+        session: '/api/session'
     };
 
 
@@ -24,8 +30,13 @@ class Server {
         this.app = express();
         this.port = process.env.PORT || '9000';
         this.server = null;
+        this.connectDB();
         this.middleware();
         this.routes();
+    }
+
+    async connectDB() {
+        await dbConnection.connect();
     }
 
     public static getInstance(): Server {
@@ -41,6 +52,9 @@ class Server {
 
     routes() {
         this.app.use(this.apiPaths.products, products);
+        this.app.use(this.apiPaths.carts, carts);
+        this.app.use(this.apiPaths.users, users);
+        this.app.use(this.apiPaths.session, session);
     }
 
     start() {
@@ -48,7 +62,7 @@ class Server {
     }
 
     close() {
-        this.server?.close();
+        this.server.close();
     }
 }
 

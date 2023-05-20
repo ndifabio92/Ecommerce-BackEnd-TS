@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import Server from './modules/server.js';
+import Server from './model/server.js';
 dotenv.config();
 
 const server = Server.getInstance();
