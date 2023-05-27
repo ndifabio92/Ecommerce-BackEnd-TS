@@ -1,5 +1,5 @@
-import UserDao from "../dao/userDao.js";
-import IUser from "../interface/IUser.js";
+import UserDao from "../dao/userDao";
+import IUser from "../interface/IUser";
 
 class UserManager {
 

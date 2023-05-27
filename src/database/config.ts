@@ -13,10 +13,10 @@ class DbConnection {
         return this.instance;
     }
 
-    async connect() {
+    async connect(): Promise<void> {
         try {
             const { MONGO_DB_URI, MONGO_DB_NAME } = process.env;
-            const url = `${MONGO_DB_URI}${MONGO_DB_NAME}`;
+            const url: string = `${MONGO_DB_URI}${MONGO_DB_NAME}`;
             await mongoose.connect(url);
             console.log('Base de datos conectada', MONGO_DB_NAME);
         } catch (error) {
@@ -26,5 +26,5 @@ class DbConnection {
     }
 }
 
-const dbConnection = DbConnection.getInstance();
+const dbConnection: DbConnection = DbConnection.getInstance();
 export default dbConnection;

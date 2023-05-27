@@ -1,5 +1,5 @@
-import IUser from "../interface/IUser.js";
-import UserSchema from "../model/userSchema.js";
+import IUser from "../interface/IUser";
+import UserSchema from "../model/userSchema";
 
 class UserDao {
     async getOne(email: string) {

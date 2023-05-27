@@ -1,6 +1,6 @@
-import products from "./products.js";
-import carts from "./carts.js";
-import users from "./users.js";
-import session from "./users.js";
+import products from "./products";
+import carts from "./carts";
+import users from "./users";
+import session from "./users";
 
 export { products, carts, users, session };

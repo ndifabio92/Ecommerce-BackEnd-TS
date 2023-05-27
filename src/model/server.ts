@@ -62,7 +62,7 @@ class Server {
     }
 
     close() {
-        this.server.close();
+        this.server?.close();
     }
 }
 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { login, logout } from "../controller/session.js";
 
-const router = Router();
+const router: Router = Router();
 
 router.post('/login', login);
 

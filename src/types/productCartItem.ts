@@ -1,6 +1,11 @@
+import typeId from "./typeId";
+
 type ProductCartItem = {
-    id: string;
+    _id?: typeId
+    id?: typeId;
     quantity: number;
+    title?: string;
 }
+
 
 export default ProductCartItem;

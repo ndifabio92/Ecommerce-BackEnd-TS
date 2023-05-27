@@ -2,7 +2,9 @@ import ProductCartItem from "../types/productCartItem.js";
 
 
 interface ICart {
-    products: ProductCartItem[];
+    _id?: string;
+    id?: string;
+    products: ProductCartItem[] | [];
 }
 
 export default ICart;

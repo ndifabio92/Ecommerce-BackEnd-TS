@@ -1,7 +1,7 @@
-import CartDao from "../dao/CartDao.js";
-import ICart from "../interface/ICart.js";
-import ProductManager from "./productManager.js";
-import ProductCartItem from '../types/productCartItem.js';
+import CartDao from "../dao/CartDao";
+import ICart from "../interface/ICart";
+import ProductManager from "./productManager";
+import ProductCartItem from '../types/productCartItem';
 
 class CartManager {
 
@@ -43,7 +43,7 @@ class CartManager {
 
             const { products } = await this.dao.getOne(cid);
 
-            const arrProducts = products.find((item: ProductCartItem) => item.id.toString() === pid);
+            const arrProducts = products.find(item => item.id.toString() === pid);
 
             const arrUpdated = !arrProducts ? [...products, { id: pid, quantity: 1 }] : [...products, arrProducts.quantity = arrProducts.quantity + 1];
 
@@ -53,9 +53,9 @@ class CartManager {
                     _id: id,
                     quantity
                 };
-            })
+            });
 
-            return this.dao.insert(cid, { _id: cid, products: newProducts });
+            return this.dao.insert(cid, { _id: cid, products: newProducts } );
         } catch (error) {
             throw error;
         }
@@ -82,7 +82,7 @@ class CartManager {
 
             const { id, products } = await this.dao.getOne(cid);
 
-            const newProducts = products.map((item: ProductCartItem) => {
+            const newProducts = products.map(item => {
                 const { id, ...rest } = item;
                 if (item.id.toString() !== pid) {
                     return {
@@ -102,14 +102,14 @@ class CartManager {
         }
     };
 
-    async updateItem({ quantity }: number, cid: string, pid: string) {
+    async updateItem({ quantity }: any, cid: string, pid: string) {
         try {
             const productManager = new ProductManager();
             await this.getOne(cid);
             await productManager.getOne(pid);
 
             const { products } = await this.dao.getOne(cid);
-            const arrProducts = products.map((item: ProductCartItem) => {
+            const arrProducts = products.map(item => {
                 const { id, ...rest } = item;
                 if (item.id.toString() === pid) {
                     rest.quantity = quantity

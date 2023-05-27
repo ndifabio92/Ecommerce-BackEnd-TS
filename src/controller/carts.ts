@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import CartManager from "../managers/CartManager.js";
+import CartManager from "../manager/cartManager";
 
-export const getCartById = async (req: Request, res: Response) => {
+
+export const getCartById = async (req: Request, res: Response): Promise<void> => {
     try {
         const { cid } = req.params;
         const manager = new CartManager();
@@ -12,7 +13,7 @@ export const getCartById = async (req: Request, res: Response) => {
     }
 };
 
-export const postCart = async (req: Request, res: Response) => {
+export const postCart = async (req: Request, res: Response): Promise<void> => {
     try {
         const { body } = req;
         const manager = new CartManager();
@@ -23,7 +24,7 @@ export const postCart = async (req: Request, res: Response) => {
     }
 };
 
-export const postProductByCartId = async (req: Request, res: Response) => {
+export const postProductByCartId = async (req: Request, res: Response): Promise<void> => {
     try {
         const { cid, pid } = req.params;
         const manager = new CartManager();
@@ -34,7 +35,7 @@ export const postProductByCartId = async (req: Request, res: Response) => {
     }
 };
 
-export const deleteCart = async (req: Request, res: Response) => {
+export const deleteCart = async (req: Request, res: Response): Promise<void> => {
     try {
         const { cid } = req.params;
         const manager = new CartManager();
@@ -45,7 +46,7 @@ export const deleteCart = async (req: Request, res: Response) => {
     }
 }
 
-export const deleteItem = async (req: Request, res: Response) => {
+export const deleteItem = async (req: Request, res: Response): Promise<void> => {
     try {
         const { cid, pid } = req.params;
         const manager = new CartManager();
@@ -56,7 +57,7 @@ export const deleteItem = async (req: Request, res: Response) => {
     }
 }
 
-export const putProductByCartId = async (req: Request, res: Response) => {
+export const putProductByCartId = async (req: Request, res: Response): Promise<void> => {
     try {
         const { body } = req;
         const { cid, pid } = req.params;
@@ -68,7 +69,7 @@ export const putProductByCartId = async (req: Request, res: Response) => {
     }
 }
 
-export const putProductsByCartId = async (req: Request, res: Response) => {
+export const putProductsByCartId = async (req: Request, res: Response): Promise<void> => {
     try {
         const { body } = req;
         const { cid } = req.params;

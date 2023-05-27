@@ -1,6 +1,6 @@
-import { generateToken, isValidPassword } from "../helpers/jwtValidate.js";
-import ILogin from "../interface/ILogin.js";
-import UserManager from "./userManager.js";
+import { generateToken, isValidPassword } from "../helpers/jwtValidate";
+import ILogin from "../interface/ILogin";
+import UserManager from "./userManager";
 
 class SessionManager {
     constructor() { }

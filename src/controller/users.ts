@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { createHash } from "../helpers/jwtValidate.js";
-import UserManager from "../manager/userManager.js";
+import { createHash } from "../helpers/jwtValidate";
+import UserManager from "../manager/userManager";
 
 
-export const postUser = async (req: Request, res: Response) => {
+export const postUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const { body } = req;
-        const manager = new UserManager();
+        const manager: UserManager = new UserManager();
 
         const dto = {
             ...body,

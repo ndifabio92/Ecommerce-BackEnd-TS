@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import ProductManager from "../manager/productManager.js";
+import ProductManager from "../manager/productManager";
+import ProductDTO from "../dto/productDTO";
 
-export const getProducts = async (req: Request, res: Response) => {
+export const getProducts = async (req: Request, res: Response): Promise<void> => {
     try {
         // const paginate = req.query;
         // const manager = new ProductManager();
@@ -13,7 +14,7 @@ export const getProducts = async (req: Request, res: Response) => {
     }
 };
 
-export const getProductById = async (req: Request, res: Response) => {
+export const getProductById = async (req: Request, res: Response): Promise<void> => {
     try {
         const { pid } = req.params;
         const manager = new ProductManager();
@@ -24,7 +25,7 @@ export const getProductById = async (req: Request, res: Response) => {
     }
 };
 
-export const postProduct = async (req: Request, res: Response) => {
+export const postProduct = async (req: Request, res: Response): Promise<void> => {
     try {
         const { body } = req;
         const manager = new ProductManager();
@@ -35,7 +36,7 @@ export const postProduct = async (req: Request, res: Response) => {
     }
 };
 
-export const putProduct = async (req: Request, res: Response) => {
+export const putProduct = async (req: Request, res: Response): Promise<void> => {
     try {
         const { pid } = req.params;
         const { id, ...rest } = req.body;
@@ -48,11 +49,11 @@ export const putProduct = async (req: Request, res: Response) => {
     }
 };
 
-export const deleteProduct = async (req: Request, res: Response) => {
+export const deleteProduct = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { pid } = req.params;
-        const manager = new ProductManager();
-        const result = await manager.delete(pid);
+        const { pid  } = req.params;
+        const manager: ProductManager = new ProductManager();
+        const result: ProductDTO = await manager.delete(pid);
 
         res.send({ msg: "Producto eliminado", result });
     } catch (error) {

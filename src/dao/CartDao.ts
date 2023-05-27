@@ -1,6 +1,8 @@
-import ICart from "../interface/ICart.js";
-import Cart from "../model/cartSchema.js";
-import ProductCartItem from "../types/productCartItem.js";
+import ICart from "../interface/ICart";
+import Cart from "../model/cartSchema";
+import ProductCartItem from "../types/productCartItem";
+import IProduct from "../interface/IProduct";
+
 
 class CartDao {
 
@@ -12,18 +14,19 @@ class CartDao {
             return {
                 id: document._id,
                 products: document.products.map(item => {
-                    const { _id: product } = item;
+
+                    const {_id: documentProduct} = item;
                     return {
-                        id: product._id,
+                        id: documentProduct._id,
                         quantity: item.quantity,
-                        title: product.title,
-                        description: product.description,
-                        code: product.code,
-                        price: product.price,
-                        status: product.status,
-                        stock: product.stock,
-                        category: product.category,
-                        thumbnail: product.thumbnail,
+                        title: documentProduct.title,
+                        description: documentProduct.description,
+                        code: documentProduct.code,
+                        price: documentProduct.price,
+                        status: documentProduct.status,
+                        stock: documentProduct.stock,
+                        category: documentProduct.category,
+                        thumbnail: documentProduct.thumbnail,
                     }
                 }),
 
@@ -83,7 +86,7 @@ class CartDao {
         }
     };
 
-    async deleteItem(cid: string, newProducts: ProductCartItem) {
+    async deleteItem(cid: string, newProducts: ICart) {
         try {
             const document = await Cart.findByIdAndUpdate({ _id: cid }, newProducts, { new: true });
             return {
@@ -118,7 +121,7 @@ class CartDao {
         }
     };
 
-    async updateProducts(cid: string, body: ProductCartItem) {
+    async updateProducts(cid: string, body: ICart) {
         try {
             const document = await Cart.findByIdAndUpdate({ _id: cid }, body, { new: true });
             return {

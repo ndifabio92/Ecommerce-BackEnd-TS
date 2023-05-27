@@ -1,6 +1,7 @@
-import ProductDao from "../dao/productDao.js";
-import ProductDTO from "../dto/productDTO.js";
-import IProduct from "../interface/IProduct.js";
+import ProductDao from "../dao/productDao";
+import ProductDTO from "../dto/productDTO";
+import IProduct from "../interface/IProduct";
+import typeId from "../types/typeId";
 
 class ProductManager {
 
@@ -32,7 +33,7 @@ class ProductManager {
     //     }
     // };
 
-    async getOne(id: string): Promise<ProductDTO> {
+    async getOne(id: typeId): Promise<ProductDTO> {
         try {
             const product = await this.dao.getOne(id);
             if (!product) throw new Error(`El producto con el id ${id} no existe o se encuentra eliminado`);

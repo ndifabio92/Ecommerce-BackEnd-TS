@@ -1,7 +1,8 @@
 
-import IProduct from '../interface/IProduct.js';
-import ProductSchema from '../model/productSchema.js';
-import ProductDTO from '../dto/productDTO.js';
+import IProduct from '../interface/IProduct';
+import ProductSchema from '../model/productSchema';
+import ProductDTO from '../dto/productDTO';
+import typeId from "../types/typeId";
 
 class ProductDao {
     async getAll() {
@@ -26,7 +27,7 @@ class ProductDao {
         }
     }
 
-    async getOne(id: string): Promise<ProductDTO> {
+    async getOne(id: typeId): Promise<ProductDTO> {
         try {
             const document = await ProductSchema.findById(id).where({ status: true });
             if (!document) return null;
